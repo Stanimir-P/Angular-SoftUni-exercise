@@ -1,0 +1,7 @@
+<main>
+    <app-loader [isLoading]="(isLoading$ | async)"></app-loader>
+
+    <div class="theme-title" *ngIf="(themeList$ | async)">
+        <app-theme-list-item *ngFor="let theme of (themeList$ | async)" [theme]="theme"></app-theme-list-item>
+    </div>
+</main>

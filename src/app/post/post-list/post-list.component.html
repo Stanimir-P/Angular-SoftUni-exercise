@@ -1,0 +1,13 @@
+<aside>
+    <div class="aside">
+        <h2 class="title">
+            Recent posts
+        </h2>
+
+        <app-loader [isLoading]="!(postList$ | async)"></app-loader>
+
+        <div *ngIf="(postList$ | async)">
+            <app-post-list-item *ngFor="let post of (postList$ | async)" [post]="post"></app-post-list-item>
+        </div>
+    </div>
+</aside>

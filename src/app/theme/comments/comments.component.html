@@ -1,0 +1,38 @@
+<div class="container">
+    <app-loader [isLoading]="isLoading$ | async"></app-loader>
+
+    <!-- theme content  -->
+    <div class="theme-content" *ngIf="themeListItem$ | async">
+        <!-- theme-title  -->
+        <div class="theme-title">
+            <div class="theme-name-wrapper">
+                <div class="theme-name">
+                    <h2>{{(themeListItem$ | async)?.themeName}}</h2>
+                    <p>Date: <time>{{(themeListItem$ | async).created_at}}</time></p>
+                </div>
+                
+                <div class="subscribers">
+                    <p>Subscribers: <span>{{(themeListItem$ | async)?.subscribers.length}}</span></p>
+                    <!-- <button class="subscribe">Subscribe</button>
+                    <button class="unsubscribe">Unsubscribe</button> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- comments  -->
+        <div *ngIf="(themeListItem$ | async)?.posts">
+            <app-comment-list-item *ngFor="let post of (themeListItem$ | async)?.posts" [post]="post"></app-comment-list-item>
+        </div>
+
+        <div class="answer-comment">
+            <p><span>currentUser</span> comment:</p>
+            <div class="answer">
+                <form>
+                    <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
+                    <button>Post</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
